@@ -1,37 +1,76 @@
 #include "deck.h"
 #include "hand.h"
+#include "war_game.h"
 #include <iostream>
 
-int main() {
+void showMenu() {
+    std::cout << "\n🎮 Card Game Menu 🎮\n";
+    std::cout << "1. Play War Game\n";
+    std::cout << "2. Interactive Mode (Draw, Shuffle, Show Hand)\n";
+    std::cout << "3. Quit\n";
+    std::cout << "Enter your choice: ";
+}
+
+void interactiveMode() {
     Deck deck;
     deck.shuffle();
+    Hand playerHand;
+    int choice;
 
-    Hand player1Hand, player2Hand;
+    do {
+        std::cout << "\n🎮 Interactive Mode 🎮\n";
+        std::cout << "1. Draw a card\n";
+        std::cout << "2. Shuffle deck\n";
+        std::cout << "3. Show hand\n";
+        std::cout << "4. Quit to main menu\n";
+        std::cout << "Enter your choice: ";
+        std::cin >> choice;
 
-    // Each player draws a card
-    std::cout << "🎮 Let’s Play War! 🎮" << std::endl;
-    if (!deck.isEmpty()) {
-        player1Hand.addCard(deck.drawCard());
-        player2Hand.addCard(deck.drawCard());
-    }
+        switch (choice) {
+            case 1:
+                if (!deck.isEmpty()) {
+                    playerHand.addCard(deck.drawCard());
+                    std::cout << "You drew a card!\n";
+                } else {
+                    std::cout << "The deck is empty!\n";
+                }
+                break;
+            case 2:
+                deck.shuffle();
+                std::cout << "Deck shuffled!\n";
+                break;
+            case 3:
+                playerHand.showHand();
+                break;
+            case 4:
+                std::cout << "Returning to main menu...\n";
+                break;
+            default:
+                std::cout << "Invalid choice! Try again.\n";
+        }
+    } while (choice != 4);
+}
 
-    // Show hands
-    std::cout << "🃏 Player 1: ";
-    player1Hand.showHand();
-    std::cout << "🃏 Player 2: ";
-    player2Hand.showHand();
+int main() {
+    int gameChoice;
+    do {
+        showMenu();
+        std::cin >> gameChoice;
 
-    // Determine winner
-    int p1Rank = player1Hand.getHandSize() > 0 ? player1Hand.getHandSize() : 0;
-    int p2Rank = player2Hand.getHandSize() > 0 ? player2Hand.getHandSize() : 0;
-
-    if (p1Rank > p2Rank) {
-        std::cout << "🏆 Player 1 Wins!" << std::endl;
-    } else if (p1Rank < p2Rank) {
-        std::cout << "🏆 Player 2 Wins!" << std::endl;
-    } else {
-        std::cout << "🤝 It's a Tie! Draw again!" << std::endl;
-    }
+        switch (gameChoice) {
+            case 1:
+                playWarGame();
+                break;
+            case 2:
+                interactiveMode();
+                break;
+            case 3:
+                std::cout << "Thanks for playing! 🎉\n";
+                break;
+            default:
+                std::cout << "Invalid choice! Try again.\n";
+        }
+    } while (gameChoice != 3);
 
     return 0;
 }

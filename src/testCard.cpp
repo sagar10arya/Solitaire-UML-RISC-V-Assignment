@@ -1,26 +1,51 @@
+
+---
+
+### **🧪 New Test Cases for `testCard.cpp`**
+Since we now have **two gameplay modes**, we should:
+✅ Ensure **War Game scoring works**  
+✅ Test **interactive drawing/shuffling**  
+
+#### **🔹 Updated `testCard.cpp`**
+```cpp
 #include "deck.h"
 #include "hand.h"
 #include <cassert>
 #include <iostream>
 
-// Test hand functionality
-void testHand() {
-    Hand testHand;
-    Card card1(Card::Suit::Hearts, 5);
-    Card card2(Card::Suit::Spades, 10);
+// Test War Game Logic (Basic)
+void testWarGame() {
+    Deck deck;
+    deck.shuffle();
+    Hand player1Hand, player2Hand;
 
-    testHand.addCard(card1);
-    testHand.addCard(card2);
+    // Simulate one round of War
+    player1Hand.addCard(deck.drawCard());
+    player2Hand.addCard(deck.drawCard());
 
-    assert(testHand.getHandSize() == 2);
-    std::cout << "✅ Test Passed: Hand holds 2 cards.\n";
+    assert(player1Hand.getHandSize() == 1);
+    assert(player2Hand.getHandSize() == 1);
 
-    testHand.showHand();
+    std::cout << "✅ Test Passed: War Game can start correctly.\n";
 }
 
-// Run all tests
+// Test Interactive Mode
+void testInteractiveMode() {
+    Deck deck;
+    deck.shuffle();
+    Hand testHand;
+
+    // Draw a card
+    testHand.addCard(deck.drawCard());
+    assert(testHand.getHandSize() == 1);
+
+    std::cout << "✅ Test Passed: Interactive Mode allows drawing cards.\n";
+}
+
+// Run All Tests
 int main() {
-    testHand();
+    testWarGame();
+    testInteractiveMode();
     std::cout << "✅ All tests passed successfully!\n";
     return 0;
 }

@@ -7,8 +7,8 @@ EXEC = solitaire
 TEST_EXEC = test
 
 # Source files
-SRC = main.cpp card.cpp deck.cpp hand.cpp
-TEST_SRC = testCard.cpp card.cpp deck.cpp hand.cpp
+SRCS = main.cpp card.cpp deck.cpp hand.cpp war_game.cpp
+TEST_SRCS = testCard.cpp card.cpp deck.cpp hand.cpp
 
 # Object files
 OBJS = $(SRCS:.cpp=.o)

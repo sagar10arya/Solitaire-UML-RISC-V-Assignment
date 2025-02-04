@@ -4,6 +4,9 @@
 This project is a **partial implementation** of a **Solitaire** game in **C++**. The implementation includes:
 - A `Card` class that represents individual playing cards.
 - A `Deck` class for creating, shuffling, and dealing cards.
+- **War Game Mode (`war_game.cpp`)** 🎮 (Players compete by drawing cards in rounds)
+- **Interactive Mode (`main.cpp`)** 🃏 (Allows drawing, shuffling, and showing hand)
+- **Deck & Hand Management** 🂡 (Supports shuffling, drawing, and hand display)
 - A `main.cpp` file to test basic functionality.
 - A `test_card.cpp` file for **unit testing** the `Card` class.
 - **UML Diagrams** explaining the software design.
@@ -20,6 +23,8 @@ solitaire_project/
 │   ├── card.cpp        # Card class implementation
 │   ├── deck.h          # Deck class header file
 │   ├── deck.cpp        # Deck class implementation
+│   ├── hand.h          # Hand class Header File
+│   ├── hand.cpp        # Hand class implementation
 │   ├── main.cpp        # Main program
 │   ├── test_card.cpp   # Unit test for Card class
 │
